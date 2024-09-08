@@ -3,30 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>view details</title>
     <link rel="stylesheet" href="./style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
+
 </head>
-<body class="new">
-    <form onsubmit="adduser(event)" class="position-absolute top-50 start-50 translate-middle shadow-lg p-5 mb-5 bg-body rounded ">
-        <div class="text-center p-3 fs-4 fw-bold log">LOGIN</div>
+<body onload=viewusers()>
+
+    <div id="single-container"></div>
+    <form class="position-absolute top-50 start-50 translate-middle form">
+        <div class="text-center p-3 fs-4 fw-bold log link-light ">VIEWUSERS</div>
         <div class="name-section p-3">
-            <input type="text" name="name" id="name" placeholder="Enter your Name" class="text-center  ">
+            <input type="text" name="name" id="name"  class="text-center  ">
             <div id="name-error"></div>
         </div>
         <div class="email-section p-3">
-        <input type="email" name="email"id="email" placeholder="Enter your email" class="text-center  ">
+        <input type="email" name="email"id="email"  class="text-center  ">
         <div id="email-error"></div>
         </div>
         <div class="password-section p-3">
-        <input type="password" name="password"id="password" placeholder="Enter your password" class="text-center ">
+        <input type="password" name="password"id="password"  class="text-center ">
         <div id="password-error"></div>
         </div>
-        <div class="text-center p-3"><input type="submit" class="submit p-2 px-4 link-light rounded-pill"></div>
     </form>
+
+    
+
+
+
+
+
+
     <script src="./add.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 </body>
 </html>

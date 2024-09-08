@@ -1,4 +1,35 @@
-body{
-    background-color: black;
-    color: white;
+.body{
+    background-color: rgb(174, 201, 235);
+}
+.user{
+    background-color: rgb(10,50,98);
+    color:black;
+   
+}
+.new{
+    background-color: rgb(10,50,98);
+}
+.log{
+   color:  rgb(10,50,98);; 
+}
+.submit{
+    background-color: rgb(10,50,98);
+    border: none;
+}
+.blue{
+    background-color: rgb(10,50,98);
+}
+.nav{
+    background-color: rgb(10,50,98);
+    
+}
+
+.gap{
+    padding: 10px;
+}
+.section{
+    background-color: rgb(214, 230, 244);
+}
+.form{
+    background-color: rgb(10,50,98);
 }

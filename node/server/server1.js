@@ -3,7 +3,7 @@ const port = 3000;
 const url = require('url');
 const fs = require('fs');
 // const queryString = require('querystring')
-const {MongoClient} = require('mongodb');
+const {MongoClient,ObjectId} = require('mongodb');
 const Client = new MongoClient('mongodb://localhost:27017');
 
 async function connect(){
@@ -18,7 +18,7 @@ async function connect(){
 }
 connect();
 
-const server = http.createServer((req, res)=>{
+const server = http.createServer(async(req, res)=>{
     let db= Client.db("dms");
     let collection=db.collection("users");
     const req_url = req.url;
@@ -50,8 +50,15 @@ const server = http.createServer((req, res)=>{
     }else if(parsed_url.pathname === '/add.js'){
         res.writeHead(200,{'Content_Type' : 'text/javascript'})
         res.end(fs.readFileSync('../client/add.js'));
-    }
-    else if(parsed_url.pathname === '/submit' && req.method === 'POST'){
+    }else if(parsed_url.pathname === '/view.html'){
+        res.writeHead(200,{'Content-Type':'text/html'});
+        res.end(fs.readFileSync('../client/view.html'));
+
+    }else if(parsed_url.pathname === '/view-detailspage.html'){
+        res.writeHead(200,{'Content-Type':'text/html'});
+        res.end(fs.readFileSync('../client/view-detailspage.html'));
+
+    }else if(parsed_url.pathname === '/submit' && req.method === 'POST'){
         console.log("Reached here.....");
 
         let body = '';
@@ -88,9 +95,43 @@ const server = http.createServer((req, res)=>{
             })
         })
       
+    } else if(parsed_url.pathname === '/submit' && req.method==='GET'){
+        let userdata=await collection.find().toArray()
+        console.log('userdata : ',userdata)
+
+        let jsondata=JSON.stringify(userdata)
+        console.log('jsondata : ',jsondata);
+
+        res.writeHead(200,{'Content_Type': 'text/json'})
+        res.end(jsondata);
+    }
+    else if(parsed_url.pathname === '/submits' && req.method==='GET'){
+        let  id=parsed_url.query.id;
+        console.log("id",id);
+
+        let _id = new ObjectId(id);
+        console.log('_id : ',_id);
+
+        let userdata = await collection.findOne({_id});
+        console.log("userdata",userdata);
+
+        let stringifydata = JSON.stringify(userdata);
+        console.log("stringfydata",stringifydata);
+
+        res.writeHead(200,{'Content-Type' : 'application/json'});
+        res.end(stringifydata);
+        
+
+            
+      
+        
     }
 
+
 })
-server.listen(port, () =>{
-    console.log(`server running at http://localhost:${port}`)
-});
+server.listen(port,()=>{
+    console.log(`server is running at http://localhost:${port}`)
+
+})
+
+
